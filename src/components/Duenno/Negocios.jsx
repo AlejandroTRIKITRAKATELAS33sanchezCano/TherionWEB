@@ -1,33 +1,46 @@
-import { useAuth } from "../AuthContext";
-
+import { useEffect, useState } from 'react';
 export default function Negocios() {
 
-    const { authToken } = useAuth();
+
+
+    const token1 = localStorage.getItem("token");
+
+    const token = "Bearer " + token1;
+
+    //Negocios
+    const [negocios, setNegocios] = useState([]);
+
     // Haciendo la solicitud al servidor
-    fetch("http://localhost:8080/api/v1/Negocio/ConsultarxDuenno", {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${authToken}`,
-        },
-    })
-        .then(response => {
+    // Definir una función asincrónica para poder usar await
+    const fetchData = async () => {
+        try {
+            const response = await fetch("http://localhost:8080/api/v1/Negocio/ConsultarxDuenno", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": token,
+                },
+            });
+
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
-            //console.log("El token es: " + authToken)
-            return response.json();
-        })
-        .then(data => {
-            // Manejar la respuesta del servidor
+
+            const data = await response.json();
             console.log(data);
-            console.log("El token es: " + authToken)
-        })
-        .catch(error => {
-            // Manejar errores
+            console.log("El token es: " + token);
+
+            setNegocios(data);
+        } catch (error) {
             console.error("Error en la solicitud:", error.message);
-            console.log("El token es: " + authToken)
-        });
+            console.log("El token es: " + token);
+        }
+    };
+
+    // Utilizar useEffect para realizar la solicitud después de que el componente se monte
+    useEffect(() => {
+        fetchData();
+    }, []); // El segundo argumento es un array de dependencias, vacío en este caso para que solo se ejecute una vez
 
     return (
         <>
@@ -48,26 +61,27 @@ export default function Negocios() {
                 <a href="/RegistroNegocio">Nuevo Negocio</a>
             </header>
             <section className="Centrado">
-                <div className="card">
-                    <div className="img_container">
-                        <img src="https://res.cloudinary.com/dbb56iwkk/image/upload/v1701278441/g7ddyt0kr5cgsiwdhnmc.jpg" alt="" />
+                {negocios.map((negocio) => (
+                    <div className="card" key={negocio.idNegocio}>
+                        <div className="img_container">
+                            <img src={negocio.neImagen} alt="" />
+                        </div>
+                        <div className="details_container">
+                            <p className="montserrat">Negocio</p>
+                            <h1 className="name">{negocio.neNombre}</h1>
+
+                            <button className="btn">
+                                <img src="https://res.cloudinary.com/dbb56iwkk/image/upload/v1701590561/food-delivery-symbol-logo-37F3E64A34-seeklogo.com_lwzzn6.png" alt="" />
+                                Pedidos
+                            </button>
+
+                            <button className="btn">
+                                <img src="https://res.cloudinary.com/dbb56iwkk/image/upload/v1701590492/4436557-200_rh1pw5.png" alt="" />
+                                Editar
+                            </button>
+                        </div>
                     </div>
-                    <div className="details_container">
-                        <p className="montserrat">Negocio</p>
-                        <h1 className="name">Nombre Del Negocio</h1>
-
-                        <button className="btn">
-                            <img src="https://res.cloudinary.com/dbb56iwkk/image/upload/v1701590561/food-delivery-symbol-logo-37F3E64A34-seeklogo.com_lwzzn6.png" alt="" />
-                            Pedidos
-                        </button>
-
-                        <button className="btn">
-                            <img src="https://res.cloudinary.com/dbb56iwkk/image/upload/v1701590492/4436557-200_rh1pw5.png" alt="" />
-                            Editar
-                        </button>
-
-                    </div>
-                </div>
+                ))}
             </section>
 
         </>

@@ -1,12 +1,10 @@
 import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from 'yup'
-import { useAuth } from "../AuthContext";
 
 export default function LoginDuenno() {
 
     //Token
-    const { authToken, setToken } = useAuth();
 
     //Formik
 
@@ -35,13 +33,15 @@ export default function LoginDuenno() {
                     // Utiliza await para esperar a que se resuelva la promesa
                     const data = await response.json();
 
-                    // Guarda el token en el estado local
-                    setToken(data.token);
-
-                    console.log("El token guardado es: " + authToken)
-
                     // Ahora puedes acceder a la propiedad que necesitas (por ejemplo, token)
                     console.log("Exitoso, Tu token es: ", data.token);
+
+                    // Almacena el token en localStorage
+                    localStorage.setItem('token', data.token);
+
+                    console.log("Tu token guardado fué: " + localStorage.getItem("token"))
+
+                    window.location.href = "http://localhost:5173/Negocios";
                 } else {
                     // Manejar errores en la respuesta
                     console.error("Error en la solicitud:", response.statusText);
