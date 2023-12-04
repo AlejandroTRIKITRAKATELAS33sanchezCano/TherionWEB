@@ -15,7 +15,7 @@ export default function Index() {
                             <a href="/RegistroDuenno" class="nav__links">Registrarse</a>
                         </li>
                         <li class="nav__items">
-                            <a href="#" class="nav__links">Inicia Sesión</a>
+                            <a href="/LoginDuenno" class="nav__links">Inicia Sesión</a>
                         </li>
                         <li class="nav__items">
                             <a href="#" class="nav__links">Descargar App</a>
@@ -43,19 +43,19 @@ export default function Index() {
 
                     <div class="about__main">
                         <article class="about__icons">
-                            <img src="./images/shapes.svg" class="about__icon" />
+                            <img src="https://res.cloudinary.com/dbb56iwkk/image/upload/v1701590492/4436557-200_rh1pw5.png" class="about__icon" />
                             <h3 class="about__title">Amplia selección</h3>
                             <p class="about__paragrah">Descubre una amplia variedad de restaurantes y tipos de cocina para satisfacer tus antojos.</p>
                         </article>
 
                         <article class="about__icons">
-                            <img src="./images/paint.svg" class="about__icon" />
+                            <img src="https://res.cloudinary.com/dbb56iwkk/image/upload/v1701590561/food-delivery-symbol-logo-37F3E64A34-seeklogo.com_lwzzn6.png" class="about__icon" />
                             <h3 class="about__title">Entrega rápida</h3>
                             <p class="about__paragrah">Nuestro servicio de entrega rápida garantiza que tu comida llegue fresca y deliciosa a tu puerta.</p>
                         </article>
 
                         <article class="about__icons">
-                            <img src="./images/code.svg" class="about__icon" />
+                            <img src="https://res.cloudinary.com/dbb56iwkk/image/upload/v1701712357/116907_tiqgsd.png" class="about__icon" />
                             <h3 class="about__title">Seguridad y confianza</h3>
                             <p class="about__paragrah">Contamos con medidas de seguridad para garantizar que tu comida se entregue de manera segura y confiable.</p>
                         </article>
@@ -97,12 +97,6 @@ export default function Index() {
                 </section>
 
                 <section class="footer__copy container">
-                    <div class="footer__social">
-                        <a href="#" class="footer__icons"><img src="./images/facebook.svg" class="footer__img" /></a>
-                        <a href="#" class="footer__icons"><img src="./images/twitter.svg" class="footer__img" /></a>
-                        <a href="#" class="footer__icons"><img src="./images/youtube.svg" class="footer__img" /></a>
-                    </div>
-
                     <h3 class="footer__copyright">Derechos reservados &copy; Therion Delivery</h3>
                 </section>
             </footer>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-export default function Negocios() {
 
+export default function SearchNegocios() {
 
 
     const token1 = localStorage.getItem("token");
@@ -14,7 +14,7 @@ export default function Negocios() {
     // Definir una función asincrónica para poder usar await
     const fetchData = async () => {
         try {
-            const response = await fetch("http://localhost:8080/api/v1/Negocio/ConsultarxDuenno", {
+            const response = await fetch("http://localhost:8080/api/v1/Negocios/ConsultarALL", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -50,15 +50,11 @@ export default function Negocios() {
                 </div>
                 <nav>
                     <ul className="nav-links">
-                        <li><a href="#">Negocios</a></li>
-                        <li><a href="/ManejoPedidos">Pedidos</a></li>
+                        <li><a href="#">Buscar Negocios</a></li>
+                        <li><a href="/ManejoPedidosCliente">Pedidos</a></li>
                     </ul>
                 </nav>
                 <a className="btn" href="/Perfil"><button>Perfil</button></a>
-            </header>
-            <header className="header2">
-                <h1>Tus Negocios</h1>
-                <a href="/RegistroNegocio">Nuevo Negocio</a>
             </header>
             <section className="Centrado">
                 {negocios.map((negocio) => (
@@ -72,19 +68,12 @@ export default function Negocios() {
 
                             <button className="btn">
                                 <img src="https://res.cloudinary.com/dbb56iwkk/image/upload/v1701590561/food-delivery-symbol-logo-37F3E64A34-seeklogo.com_lwzzn6.png" alt="" />
-                                Pedidos
-                            </button>
-
-                            <button className="btn">
-                                <img src="https://res.cloudinary.com/dbb56iwkk/image/upload/v1701590492/4436557-200_rh1pw5.png" alt="" />
-                                Editar
+                                Ver Menus
                             </button>
                         </div>
                     </div>
                 ))}
             </section>
-
         </>
-
     )
 }

@@ -59,7 +59,7 @@ export default function LoginDuenno() {
         <div>
             <header className="header">
                 <div className="logo">
-                    <img src="../img/Mountain.png" alt="Logo de la marca" />
+                    <img src="https://res.cloudinary.com/dbb56iwkk/image/upload/v1701712403/WhatsApp_Image_2023-12-03_at_9.41.26_AM_lfsvv9.jpg" alt="Logo de la marca" />
                 </div>
                 <nav>
                     <ul className="nav-links">
@@ -73,10 +73,10 @@ export default function LoginDuenno() {
             <main className="card-container slideUp-animation">
                 <div className="image-container">
                     <h1 className="company">Therion</h1>
-                    <img src="./assets/images/signUp.svg" className="illustration" alt="" />
-                    <p className="quote">Empieza A Realizar Pedidos A Domicilio</p>
+                    <img src="https://res.cloudinary.com/dbb56iwkk/image/upload/v1701712403/WhatsApp_Image_2023-12-03_at_9.41.26_AM_lfsvv9.jpg" className="illustration" alt="" />
+                    <p className="quote">Registrate Y Empieza A Realizar Pedidos A Domicilio</p>
                     <a href="#btm" className="mobile-btm-nav">
-                        <img src="./assets/images/dbl-arrow.png" alt="" />
+                        <img src="https://res.cloudinary.com/dbb56iwkk/image/upload/v1701712627/up-arrow-5_urxa0z.png" alt="" />
                     </a>
                 </div>
                 <form action="" method="" onSubmit={formik.handleSubmit}>
@@ -112,7 +112,7 @@ export default function LoginDuenno() {
                             Inicia Sesión
                             </button>
                             <p className="btm-text">
-                                ¿Ya tienes cuenta? <a href="/LoginDuenno" className="btm-text-highlighted">  Inicia Sesión</a>
+                                ¿No tienes cuenta? <a href="/RegistroDuenno" className="btm-text-highlighted">  Registrate</a>
                             </p>
                             <p className="btm-text">
                                 ¿Eres Cliente? <a href="/LoginCliente" className="btm-text-highlighted">  Inicia Sesión Cliente</a>

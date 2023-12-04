@@ -15,6 +15,8 @@ import EditarProducto from "./components/Duenno/Negocio/EditarProducto"
 import Dashboard from "./components/Duenno/Negocio/Dashboard"
 import RegistroCliente from "./components/Client/RegistroCliente"
 import LoginClient from "./components/Client/LoginClient"
+import SearchNegocios from "./components/Client/SearchNegocios"
+import ManejoPedidosCliente from "./components/Client/ManejoPedidosCliente"
 
 function App() {
 
@@ -39,6 +41,8 @@ function App() {
       //Cliente
       <Route path="/RegistroCliente" element={<RegistroCliente/>}/>
       <Route path="/LoginCliente" element={<LoginClient/>}/>
+      <Route path="/BuscarNegocios" element={<SearchNegocios/>}/>
+      <Route path="/ManejoPedidosCliente" element={<ManejoPedidosCliente/>}/>
     </Routes>
   )
 }

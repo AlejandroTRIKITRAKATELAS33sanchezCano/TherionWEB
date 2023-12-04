@@ -30,6 +30,13 @@ export default function RegistrarNegocio() {
         fetchTiposNegocios();
     }, []);
 
+    const config = {
+        headers: {
+            'Authorization': token,
+            'Content-Type': 'multipart/form-data',
+        },
+    };
+
     const formik = useFormik({
         initialValues: {
             neNombre: '',
@@ -48,14 +55,6 @@ export default function RegistrarNegocio() {
             idTipoNegocio: '',
             archivo: null
         },
-        validationSchema: Yup.object({
-            neNombre: Yup.string().required('Nombre del negocio es requerido'),
-            neAbierto: Yup.boolean(),
-            neActivo: Yup.boolean(),
-            neBorrado: Yup.boolean(),
-            neTarjeta: Yup.boolean(),
-            neDomicilio: Yup.boolean()
-        }),
 
         onSubmit: async (values, { setSubmitting }) => {
 
@@ -64,20 +63,27 @@ export default function RegistrarNegocio() {
             //Configurar Formulario Multipar
             const formData = new FormData();
 
-            formData.append('negocioRequest', JSON.stringify(values));
-            formData.append('archivo', values.archivo)
+            const negocioRequestWithoutArchivo = { ...values };
+            delete negocioRequestWithoutArchivo.archivo;
 
-            console.log(JSON.stringify(values))
+            const negocioRequestJson = JSON.stringify(negocioRequestWithoutArchivo);
+
+            // Agregar 'negocioRequest' al formulario sin el campo 'archivo'
+            formData.append('negocioRequestJson', JSON.stringify(negocioRequestWithoutArchivo));
+
+            formData.append('archivo', values.archivo,{
+                type: 'multipart/form-data',
+            });
+
+            console.log(JSON.stringify(negocioRequestWithoutArchivo));
+
+            console.log("El request que se manda es: " + negocioRequestJson)
+
+            console.log("El formData del negocio " + formData.get('negocioRequestJson'))
+            console.log("El formData del archivo " + formData.get('archivo'))
 
             try {
-                const response = await fetch("http://localhost:8080/api/v1/Negocio/Registro", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": undefined,
-                        "Authorization": token,
-                    },
-                    body: formData  // Usa directamente el objeto FormData como cuerpo
-                });
+                const response = await axios.post("http://localhost:8080/api/v1/Negocio/Registro", formData, config);
 
                 if (response.ok) {
 
@@ -95,6 +101,7 @@ export default function RegistrarNegocio() {
                 }
             } catch (error) {
                 // Manejar errores de red u otros errores
+                console.log(formData)
                 console.error("Error en la solicitud:", error.message);
             }
 

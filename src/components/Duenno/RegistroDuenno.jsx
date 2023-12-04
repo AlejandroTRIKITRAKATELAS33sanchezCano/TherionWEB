@@ -41,10 +41,12 @@ export default function RegistroDuenno() {
                     const data = await response.json();
 
                     // Guarda el token en el estado local
-                    setAuthToken(data.token);
+                    localStorage.setItem('token', data.token);
 
                     // Ahora puedes acceder a la propiedad que necesitas (por ejemplo, token)
-                    console.log("Exitoso, Tu token es: ", data.token);
+                    console.log("Exitoso, Tu token es: ", localStorage.getItem("token"));
+                    
+                    window.location.href = "http://localhost:5173/Negocios";
                 } else {
                     // Manejar errores en la respuesta
                     console.error("Error en la solicitud:", response.statusText);
@@ -62,7 +64,7 @@ export default function RegistroDuenno() {
         <div>
             <header className="header">
                 <div className="logo">
-                    <img src="../img/Mountain.png" alt="Logo de la marca" />
+                    <img src="https://res.cloudinary.com/dbb56iwkk/image/upload/v1701712403/WhatsApp_Image_2023-12-03_at_9.41.26_AM_lfsvv9.jpg" alt="Logo de la marca" />
                 </div>
                 <nav>
                     <ul className="nav-links">
@@ -76,10 +78,10 @@ export default function RegistroDuenno() {
             <main className="card-container slideUp-animation">
                 <div className="image-container">
                     <h1 className="company">Therion</h1>
-                    <img src="./assets/images/signUp.svg" className="illustration" alt="" />
+                    <img src="https://res.cloudinary.com/dbb56iwkk/image/upload/v1701712403/WhatsApp_Image_2023-12-03_at_9.41.26_AM_lfsvv9.jpg" className="illustration" alt="" />
                     <p className="quote">Registrate Y Empieza A Realizar Pedidos A Domicilio</p>
                     <a href="#btm" className="mobile-btm-nav">
-                        <img src="./assets/images/dbl-arrow.png" alt="" />
+                        <img src="https://res.cloudinary.com/dbb56iwkk/image/upload/v1701712627/up-arrow-5_urxa0z.png" alt="" />
                     </a>
                 </div>
                 <form action="" method="" onSubmit={formik.handleSubmit}>
@@ -151,7 +153,7 @@ export default function RegistroDuenno() {
                                 ¿Ya tienes cuenta? <a href="/LoginDuenno" className="btm-text-highlighted">  Inicia Sesión</a>
                             </p>
                             <p className="btm-text">
-                                ¿Eres Cliente? <a href="/RegistroCliente" className="btm-text-highlighted">  Inicia Sesión Cliente</a>
+                                ¿Eres Cliente? <a href="/RegistroCliente" className="btm-text-highlighted">  Registrate Cliente</a>
                             </p>
                         </div>
                     </div>
