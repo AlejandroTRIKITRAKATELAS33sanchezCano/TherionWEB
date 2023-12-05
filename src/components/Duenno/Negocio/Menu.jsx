@@ -1,28 +1,25 @@
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-export default function Negocios() {
 
+export default function Menu() {
 
+    // Obtén el parámetro de la URL (en este caso, el id)
+    const { idMenu } = useParams();
+
+    console.log(idMenu)
 
     const token1 = localStorage.getItem("token");
 
     const token = "Bearer " + token1;
 
-    //Negocios
-    const [negocios, setNegocios] = useState([]);
+    //pedidos
+    const [productos, setProductos] = useState([]);
 
-    const handleEditarClick = (idNegocio) => {
-        // Aquí puedes construir la URL con el idNegocio y navegar a la página de edición
-        const url = `http://localhost:5173/EditarNegocio/${idNegocio}`;
-        window.location.href = url
-    };
-
-    // Haciendo la solicitud al servidor
-    // Definir una función asincrónica para poder usar await
     const fetchData = async () => {
         try {
-            const response = await fetch("http://localhost:8080/api/v1/Negocio/ConsultarxDuenno", {
+            const response = await fetch(`http://localhost:8080/api/v1/Negocios/Menu/ConsultarProductosxMenu/${idMenu}`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -34,11 +31,12 @@ export default function Negocios() {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
 
-            const data = await response.json();
-            console.log(data);
+            const data2 = await response.json();
+            console.log("Data del menu " + data2);
             console.log("El token es: " + token);
 
-            setNegocios(data);
+            // Verificar si data2 es un array antes de asignarlo a setMenus
+            setProductos(Array.isArray(data2) ? data2 : []);
         } catch (error) {
             console.error("Error en la solicitud:", error.message);
             console.log("El token es: " + token);
@@ -65,25 +63,20 @@ export default function Negocios() {
                 <a className="btn" href="/Perfil"><button>Perfil</button></a>
             </header>
             <header className="header2">
-                <h1>Tus Negocios</h1>
-                <a href="/RegistroNegocio">Nuevo Negocio</a>
+                <h1>Tus Productos De Menú</h1>
+                <a href={`/CrearProducto/${idMenu}`}> Nuevo Producto</a>
             </header>
-            <section className="Centrado">
-                {negocios.map((negocio) => (
-                    <div className="card" key={negocio.idNegocio}>
+            <section className='Centrado'>
+                {productos.map((producto) => (
+                    <div className="card" key={producto.idProducto}>
                         <div className="img_container">
-                            <img src={negocio.neImagen} alt="" />
+                            <img src={producto.prImagen} alt="" />
                         </div>
                         <div className="details_container">
-                            <p className="montserrat">Negocio</p>
-                            <h1 className="name">{negocio.neNombre}</h1>
-
-                            <button className="btn">
-                                <img src="https://res.cloudinary.com/dbb56iwkk/image/upload/v1701590561/food-delivery-symbol-logo-37F3E64A34-seeklogo.com_lwzzn6.png" alt="" />
-                                Pedidos
-                            </button>
-
-                            <Link to={`/EditarNegocio/${negocio.idNegocio}`}>
+                            <p className="montserrat">Menu</p>
+                            <h1 className="name">{producto.prNombre}</h1>
+                            <h1 className='name'>{producto.prPrecio}</h1>
+                            <Link to={`/CrearProducto/${producto.idProducto}`}>
                                 <button className="btn">
                                     <img
                                         src="https://res.cloudinary.com/dbb56iwkk/image/upload/v1701590492/4436557-200_rh1pw5.png"
@@ -97,7 +90,9 @@ export default function Negocios() {
                 ))}
             </section>
 
+
         </>
+
 
     )
 }

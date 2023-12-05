@@ -17,6 +17,7 @@ import RegistroCliente from "./components/Client/RegistroCliente"
 import LoginClient from "./components/Client/LoginClient"
 import SearchNegocios from "./components/Client/SearchNegocios"
 import ManejoPedidosCliente from "./components/Client/ManejoPedidosCliente"
+import Menu from "./components/Duenno/Negocio/Menu"
 
 function App() {
 
@@ -30,11 +31,12 @@ function App() {
       <Route path="/Negocios" element={<Negocios/>}/>
       <Route path="/EditarDuenno" element={<EditarDuenno/>}/> 
       <Route path="/RegistroNegocio" element={<RegistrarNegocio/>}/>
-      <Route path="/EditarNegocio" element={<EditarNegocio/>}/>
+      <Route path="/EditarNegocio/:idNegocio" element={<EditarNegocio/>}/>
       <Route path="/ManejoPedidos" element={<ManejoPedidos/>}/>
-      <Route path="/CrearMenu" element={<CrearMenu/>}/>
+      <Route path="/CrearMenu/:idNegocio" element={<CrearMenu/>}/>
+      <Route path="/Menu/:idMenu" element={<Menu/>}/>
       <Route path="/EditarMenu" element={<EditarMenu/>}/>
-      <Route path="/CrearProducto" element={<CrearProducto/>}/>
+      <Route path="/CrearProducto/:idMenu" element={<CrearProducto/>}/>
       <Route path="/EditarProducto" element={<EditarProducto/>}/>
       <Route path="/Dashboard" elemente={<Dashboard/>}/>
 
@@ -43,6 +45,7 @@ function App() {
       <Route path="/LoginCliente" element={<LoginClient/>}/>
       <Route path="/BuscarNegocios" element={<SearchNegocios/>}/>
       <Route path="/ManejoPedidosCliente" element={<ManejoPedidosCliente/>}/>
+      
     </Routes>
   )
 }
