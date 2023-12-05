@@ -20,6 +20,7 @@ import ManejoPedidosCliente from "./components/Client/ManejoPedidosCliente"
 import Menu from "./components/Duenno/Negocio/Menu"
 import VerMenus from "./components/Client/VerMenus"
 import VerProductos from "./components/Client/VerProductos"
+import CrearPedido from "./components/Client/CrearPedido"
 
 function App() {
 
@@ -49,6 +50,7 @@ function App() {
       <Route path="/ManejoPedidosCliente" element={<ManejoPedidosCliente/>}/>
       <Route path="/VerMenus/:idNegocio" element={<VerMenus/>}/>
       <Route path="/VerProductos/:idMenu" element={<VerProductos/>}/>
+      <Route path="/CrearPedido/:idProducto/:prPrecio" element={<CrearPedido/>}/>
       
     </Routes>
   )

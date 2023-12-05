@@ -64,7 +64,7 @@ export default function Menu() {
             </header>
             <header className="header2">
                 <h1>Tus Productos De Menú</h1>
-                <a href={`/CrearProducto/${idMenu}`}> Nuevo Producto</a>
+                <a href={`/CrearMenu/${negocios.idNegocio}`}> Nuevo Producto</a>
             </header>
             <section className='Centrado'>
                 {productos.map((producto) => (
@@ -75,7 +75,7 @@ export default function Menu() {
                         <div className="details_container">
                             <p className="montserrat">Menu</p>
                             <h1 className="name">{producto.prNombre}</h1>
-                            <h1c></h1c>
+                            <h1></h1>
                             <Link to={`/CrearProducto/${producto.idProducto}`}>
                                 <button className="btn">
                                     <img

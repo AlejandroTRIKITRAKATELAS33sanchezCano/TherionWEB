@@ -75,7 +75,7 @@ export default function VerProductos() {
                             <p className="montserrat">Menu</p>
                             <h1 className="name">{producto.prNombre}</h1>
                             <h1c></h1c>
-                            <Link to={`/CrearProducto/${producto.idProducto}`}>
+                            <Link to={`/CrearPedido/${producto.idProducto}/${producto.prPrecio}`}>
                                 <button className="btn">
                                     <img
                                         src="https://res.cloudinary.com/dbb56iwkk/image/upload/v1701590492/4436557-200_rh1pw5.png"
