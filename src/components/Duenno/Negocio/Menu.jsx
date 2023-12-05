@@ -75,7 +75,7 @@ export default function Menu() {
                         <div className="details_container">
                             <p className="montserrat">Menu</p>
                             <h1 className="name">{producto.prNombre}</h1>
-                            <h1 className='name'>{producto.prPrecio}</h1>
+                            <h1c></h1c>
                             <Link to={`/CrearProducto/${producto.idProducto}`}>
                                 <button className="btn">
                                     <img

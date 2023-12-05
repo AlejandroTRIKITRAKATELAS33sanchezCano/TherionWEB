@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function SearchNegocios() {
 
@@ -66,10 +67,15 @@ export default function SearchNegocios() {
                             <p className="montserrat">Negocio</p>
                             <h1 className="name">{negocio.neNombre}</h1>
 
-                            <button className="btn">
-                                <img src="https://res.cloudinary.com/dbb56iwkk/image/upload/v1701590561/food-delivery-symbol-logo-37F3E64A34-seeklogo.com_lwzzn6.png" alt="" />
-                                Ver Menus
-                            </button>
+                            <Link to={`/VerMenus/${negocio.idNegocio}`}>
+                                <button className="btn">
+                                    <img
+                                        src="https://res.cloudinary.com/dbb56iwkk/image/upload/v1701590492/4436557-200_rh1pw5.png"
+                                        alt=""
+                                    />
+                                    Ver Menus
+                                </button>
+                            </Link>
                         </div>
                     </div>
                 ))}

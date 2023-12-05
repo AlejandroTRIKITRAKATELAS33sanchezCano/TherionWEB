@@ -18,6 +18,8 @@ import LoginClient from "./components/Client/LoginClient"
 import SearchNegocios from "./components/Client/SearchNegocios"
 import ManejoPedidosCliente from "./components/Client/ManejoPedidosCliente"
 import Menu from "./components/Duenno/Negocio/Menu"
+import VerMenus from "./components/Client/VerMenus"
+import VerProductos from "./components/Client/VerProductos"
 
 function App() {
 
@@ -45,6 +47,8 @@ function App() {
       <Route path="/LoginCliente" element={<LoginClient/>}/>
       <Route path="/BuscarNegocios" element={<SearchNegocios/>}/>
       <Route path="/ManejoPedidosCliente" element={<ManejoPedidosCliente/>}/>
+      <Route path="/VerMenus/:idNegocio" element={<VerMenus/>}/>
+      <Route path="/VerProductos/:idMenu" element={<VerProductos/>}/>
       
     </Routes>
   )
