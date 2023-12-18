@@ -1590,7 +1590,7 @@ a {
     display: flex;
     max-width: 666px;
     background-color: white;
-    margin: 0 1rem;
+    margin: 50px 1rem;
 }
 
 .img_container {
@@ -1712,6 +1712,8 @@ a {
 .Centrado {
     min-height: 100vh;
     display: flex;
+    margin-top: 50px;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
 }

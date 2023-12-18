@@ -68,6 +68,7 @@ export default function CrearProducto() {
                 } else {
                     // Manejar errores en la respuesta
                     console.error("Error en la solicitud:", response.statusText);
+                    window.location.href = `http://localhost:5173/Menu/${idMenu}`
                 }
             } catch (error) {
                 // Manejar errores de red u otros errores

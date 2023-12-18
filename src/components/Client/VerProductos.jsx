@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 export default function VerProductos() {
 
     // Obtén el parámetro de la URL (en este caso, el id)
+    const {idNegocio} = useParams();
     const { idMenu } = useParams();
 
     console.log(idMenu)
@@ -75,7 +76,7 @@ export default function VerProductos() {
                             <p className="montserrat">Menu</p>
                             <h1 className="name">{producto.prNombre}</h1>
                             <h1c></h1c>
-                            <Link to={`/CrearPedido/${producto.idProducto}/${producto.prPrecio}`}>
+                            <Link to={`/CrearPedido/${idNegocio}/${producto.idProducto}/${producto.prPrecio}`}>
                                 <button className="btn">
                                     <img
                                         src="https://res.cloudinary.com/dbb56iwkk/image/upload/v1701590492/4436557-200_rh1pw5.png"

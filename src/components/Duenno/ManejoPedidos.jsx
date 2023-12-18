@@ -60,10 +60,13 @@ export default function ManejoPedidos() {
             <section className="Centrado">
                 {pedidos.map((pedido) => (
                     <div className="card" key={pedido.idPedido}>
+                        <div className="img_container">
+                            <img src="https://res.cloudinary.com/dbb56iwkk/image/upload/v1701730866/bjbzfalfovnobaw1sr1m.jpg" alt="" />
+                        </div>
                         <div className="details_container">
                             <p className="montserrat">Pedido</p>
-                            <h1 className="name">{pedido.PePrecio}$</h1>
-                            <p className="montserrat">{pedido.PeFecha}</p>
+                            <h1 className="name">{pedido.pePrecio}$</h1>
+                            <p className="montserrat">{pedido.peFecha}</p>
                             <button className="btn">
                                 <img src="https://res.cloudinary.com/dbb56iwkk/image/upload/v1701590561/food-delivery-symbol-logo-37F3E64A34-seeklogo.com_lwzzn6.png" alt="" />
                                 Pedidos

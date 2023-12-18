@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 export default function Menu() {
 
     // Obtén el parámetro de la URL (en este caso, el id)
+    const {idNegocio} = useParams();
     const { idMenu } = useParams();
 
     console.log(idMenu)
@@ -64,7 +65,7 @@ export default function Menu() {
             </header>
             <header className="header2">
                 <h1>Tus Productos De Menú</h1>
-                <a href={`/CrearMenu/${negocios.idNegocio}`}> Nuevo Producto</a>
+                <a href={`/CrearProducto/${idMenu}`}> Nuevo Producto</a>
             </header>
             <section className='Centrado'>
                 {productos.map((producto) => (
@@ -73,7 +74,7 @@ export default function Menu() {
                             <img src={producto.prImagen} alt="" />
                         </div>
                         <div className="details_container">
-                            <p className="montserrat">Menu</p>
+                            <p className="montserrat">Producto</p>
                             <h1 className="name">{producto.prNombre}</h1>
                             <h1></h1>
                             <Link to={`/CrearProducto/${producto.idProducto}`}>

@@ -84,7 +84,7 @@ export default function VerMenus() {
                 <nav>
                     <ul className="nav-links">
                         <li><a href="#">Negocios</a></li>
-                        <li><a href="/ManejoPedidos">Pedidos</a></li>
+                        <li><a href="/ManejoPedidosCliente">Pedidos</a></li>
                     </ul>
                 </nav>
                 <a className="btn" href="/Perfil"><button>Perfil</button></a>
@@ -117,7 +117,7 @@ export default function VerMenus() {
                             <p className="montserrat">Menu</p>
                             <h1 className="name">{menu.meNombre}</h1>
 
-                            <Link to={`/VerProductos/${menu.idMenu}`}>
+                            <Link to={`/VerProductos/${idNegocio}/${menu.idMenu}`}>
                                 <button className="btn">
                                     <img
                                         src="https://res.cloudinary.com/dbb56iwkk/image/upload/v1701590492/4436557-200_rh1pw5.png"

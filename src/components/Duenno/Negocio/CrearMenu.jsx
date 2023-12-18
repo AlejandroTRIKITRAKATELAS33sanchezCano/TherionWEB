@@ -68,6 +68,7 @@ export default function CrearMenu() {
                 } else {
                     // Manejar errores en la respuesta
                     console.error("Error en la solicitud:", response.statusText);
+                    window.location.href = `http://localhost:5173/EditarNegocio/${idNegocio}`
                 }
             } catch (error) {
                 // Manejar errores de red u otros errores

@@ -37,7 +37,7 @@ function App() {
       <Route path="/EditarNegocio/:idNegocio" element={<EditarNegocio/>}/>
       <Route path="/ManejoPedidos" element={<ManejoPedidos/>}/>
       <Route path="/CrearMenu/:idNegocio" element={<CrearMenu/>}/>
-      <Route path="/Menu/:idMenu" element={<Menu/>}/>
+      <Route path="/Menu/:idNegocio/:idMenu" element={<Menu/>}/>
       <Route path="/EditarMenu" element={<EditarMenu/>}/>
       <Route path="/CrearProducto/:idMenu" element={<CrearProducto/>}/>
       <Route path="/EditarProducto" element={<EditarProducto/>}/>
@@ -49,8 +49,9 @@ function App() {
       <Route path="/BuscarNegocios" element={<SearchNegocios/>}/>
       <Route path="/ManejoPedidosCliente" element={<ManejoPedidosCliente/>}/>
       <Route path="/VerMenus/:idNegocio" element={<VerMenus/>}/>
-      <Route path="/VerProductos/:idMenu" element={<VerProductos/>}/>
-      <Route path="/CrearPedido/:idProducto/:prPrecio" element={<CrearPedido/>}/>
+      <Route path="/VerProductos/:idNegocio/:idMenu" element={<VerProductos/>}/>
+      <Route path="/CrearPedido/:idNegocio/:idProducto/:prPrecio" element={<CrearPedido/>}/>
+    
       
     </Routes>
   )

@@ -11,7 +11,7 @@ export default function CrearPedido() {
     const token = "Bearer " + token1;
 
     // Obtén el parámetro de la URL (en este caso, el id)
-    const { idProducto, prPrecio } = useParams();
+    const { idNegocio, idProducto, prPrecio } = useParams();
 
     const obtenerFechaFormateada = () => {
         const opcionesDeFormato = {
@@ -31,46 +31,61 @@ export default function CrearPedido() {
     };
 
     const fechaFormateada = obtenerFechaFormateada();
-    console.log(fechaFormateada);
+    const nuevaFechaFormateada = fechaFormateada.replace(/,(\s\d{2}:\d{2}:\d{2})$/, '$1');
+
+    console.log(nuevaFechaFormateada);
 
     console.log(idProducto, prPrecio)
 
-    const [cliente, setClientes] = useState([]);
+    const [clientes, setClientes] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-    const fetchData = async () => {
-        try {
-            const response = await fetch(`http://localhost:8080/api/v1/Cliente/ConsultarCliente`, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": token,
-                },
-            });
+    useEffect(() => {
+        
+        const fetchData = async () => {
+            try {
+                const response = await fetch(`http://localhost:8080/api/v1/Cliente/ConsultarCliente`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": token,
+                    },
+                });
 
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const data2 = await response.json();
+                console.log("Data del menu " + data2.idCliente);
+                console.log("El token es: " + token);
+
+                // Verificar si data2 es un array antes de asignarlo a setMenus
+                setClientes(data2);
+                setLoading(false);
+
+                console.log("El cliente es: " + (clientes.length > 0 ? clientes[0].idCliente : "No hay clientes"));
+                
+            } catch (error) {
+                console.error("Error en la solicitud:", error.message);
+                console.log("El token es: " + token);
+                setLoading(false);
             }
+        };
 
-            const data2 = await response.json();
-            console.log("Data del menu " + data2);
-            console.log("El token es: " + token);
-
-            // Verificar si data2 es un array antes de asignarlo a setMenus
-            setClientes(Array.isArray(data2) ? data2 : []);
-        } catch (error) {
-            console.error("Error en la solicitud:", error.message);
-            console.log("El token es: " + token);
-        }
-    };
+        fetchData();
+        
+    }, [])
 
     const formik = useFormik({
         initialValues: {
             peDireccion: '',
             pePrecio: prPrecio,
-            peFecha: fechaFormateada,
+            peFecha: nuevaFechaFormateada,
             peActivo: true,
             peCancelado: false,
-            idCliente: cliente.idCliente,
+            idNegocio: idNegocio,
+            idCliente: clientes.idCliente,
             idProducto: idProducto,
         },
         onSubmit: async (values, { setSubmitting }) => {
@@ -105,7 +120,14 @@ export default function CrearPedido() {
 
     return (
         <>
-            <main className="card-container slideUp-animation">
+            { loading ?(
+            
+            <main>
+                <h1>Cargando...</h1>
+            </main>
+
+            ):(
+                <main className="card-container slideUp-animation">
                 <div className="image-container">
                     <h1 className="company">Therion</h1>
                     <img src="./assets/images/signUp.svg" className="illustration" alt="" />
@@ -140,6 +162,7 @@ export default function CrearPedido() {
                     </div>
                 </form>
             </main>
+            )}
         </>
     )
 }

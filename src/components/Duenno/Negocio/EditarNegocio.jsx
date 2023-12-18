@@ -131,7 +131,7 @@ export default function EditarNegocio() {
                             <p className="montserrat">Menu</p>
                             <h1 className="name">{menu.meNombre}</h1>
 
-                            <Link to={`/Menu/${menu.idMenu}`}>
+                            <Link to={`/Menu/${negocios.idNegocio}/${menu.idMenu}`}>
                                 <button className="btn">
                                     <img
                                         src="https://res.cloudinary.com/dbb56iwkk/image/upload/v1701590492/4436557-200_rh1pw5.png"
