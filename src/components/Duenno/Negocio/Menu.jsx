@@ -61,7 +61,6 @@ export default function Menu() {
                         <li><a href="/ManejoPedidos">Pedidos</a></li>
                     </ul>
                 </nav>
-                <a className="btn" href="/Perfil"><button>Perfil</button></a>
             </header>
             <header className="header2">
                 <h1>Tus Productos De Menú</h1>

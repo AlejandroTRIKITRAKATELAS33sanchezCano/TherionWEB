@@ -55,7 +55,6 @@ export default function SearchNegocios() {
                         <li><a href="/ManejoPedidosCliente">Pedidos</a></li>
                     </ul>
                 </nav>
-                <a className="btn" href="/Perfil"><button>Perfil</button></a>
             </header>
             <section className="Centrado">
                 {negocios.map((negocio) => (

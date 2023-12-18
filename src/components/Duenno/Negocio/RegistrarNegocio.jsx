@@ -8,6 +8,24 @@ export default function RegistrarNegocio() {
     const [tiposNegocios, setTiposNegocios] = useState([]);
     const [loading, setLoading] = useState(true);
 
+    const [estados, setEstados] = useState([]);
+
+    useEffect(() => {
+        const fetchEstados = async () => {
+            try {
+                const response = await axios.get('http://localhost:8080/api/v1/Negocio/ObtenerEstados', {
+                });
+                setEstados(response.data);
+                setLoading(false);
+            } catch (error) {
+                console.error(error);
+                setLoading(false);
+            }
+        };
+
+        fetchEstados();
+    }, []);
+
     const token1 = localStorage.getItem("token");
     const token = "Bearer " + token1;
 
@@ -159,12 +177,35 @@ export default function RegistrarNegocio() {
                         </div>
 
                         <div className="input-container">
-                            <label htmlFor="esNombre"></label>
-                            <input type="text" placeholder="Estado Donde Vives" name="esNombre" id="esNombre" onChange={formik.handleChange} onBlur={formik.handleChange} value={formik.values.esNombre} />
-                            <span>
-                                Nombre Del Estado
-                            </span>
-                            <div className="error"></div>
+                            <label htmlFor="esNombre">Estado</label>
+                            <select
+                                type="select"
+                                name="esNombre"
+                                id="esNombre"
+                                className="user-password"
+                                required
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleChange}
+                                value={formik.values.esNombre}
+                            >
+                                <option value="" disabled>
+                                    Selecciona Un Estado
+                                </option>
+                                {loading ? (
+                                    <option value="" disabled>
+                                        Cargando...
+                                    </option>
+                                ) : (
+                                    estados.map((estado) => (
+                                        <option key={estado.idEstado} value={estado.esNombre}>
+                                            {estado.esNombre}
+                                        </option>
+                                    ))
+                                )}
+                            </select>
+                            {formik.touched.esNombre && formik.errors.esNombre ? (
+                                <div className="error">{formik.errors.esNombre}</div>
+                            ) : null}
                         </div>
 
                         <div className="input-container">

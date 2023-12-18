@@ -87,7 +87,6 @@ export default function VerMenus() {
                         <li><a href="/ManejoPedidosCliente">Pedidos</a></li>
                     </ul>
                 </nav>
-                <a className="btn" href="/Perfil"><button>Perfil</button></a>
             </header>
             <section className="Centrado">
                 <div className="card" key={negocios.idNegocio}>

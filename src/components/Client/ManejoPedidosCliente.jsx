@@ -1,15 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from 'react';
+
 
 export default function ManejoPedidosCliente() {
+
 
     const token1 = localStorage.getItem("token");
 
     const token = "Bearer " + token1;
 
-    //Negocios
+    //Pedidos
     const [pedidos, setPedidos] = useState([]);
 
-    const fetch = async () => {
+    // Haciendo la solicitud al servidor
+    // Definir una función asincrónica para poder usar await
+    const fetchData = async () => {
         try {
             const response = await fetch("http://localhost:8080/api/v1/Pedido/ConsultarXClienteID", {
                 method: "GET",
@@ -27,12 +31,17 @@ export default function ManejoPedidosCliente() {
             console.log(data);
             console.log("El token es: " + token);
 
-            setNegocios(data);
+            setPedidos(data);
         } catch (error) {
             console.error("Error en la solicitud:", error.message);
             console.log("El token es: " + token);
         }
-    }
+    };
+
+    // Utilizar useEffect para realizar la solicitud después de que el componente se monte
+    useEffect(() => {
+        fetchData();
+    }, []); // El segundo argumento es un array de dependencias, vacío en este caso para que solo se ejecute una vez
 
     return (
         <>
@@ -42,8 +51,8 @@ export default function ManejoPedidosCliente() {
                 </div>
                 <nav>
                     <ul className="nav-links">
-                        <li><a href="/BuscarNegocios">Buscar Negocios</a></li>
-                        <li><a href="/ManejoPedidosCliente">Pedidos</a></li>
+                        <li><a href="#">Negocios</a></li>
+                        <li><a href="/ManejoPedidos">Pedidos</a></li>
                     </ul>
                 </nav>
                 <a className="btn" href="/Perfil"><button>Perfil</button></a>
@@ -56,10 +65,9 @@ export default function ManejoPedidosCliente() {
                         </div>
                         <div className="details_container">
                             <p className="montserrat">Pedido</p>
-                            <h1 className="name">{pedido.pePrecio}</h1>
-                            <h2>{pedido.peFecha}</h2>
-                            <h2>Activo: {pedido.peActivo}</h2>
-                            <h2>Dirección: {pedido.peDireccion}</h2>
+                            <h1 className="name">{pedido.pePrecio}$</h1>
+                            <p className="montserrat">{pedido.peFecha}</p>
+                            <h2 className='name'>Entregado: {pedido.peActivo ? 'Si' : 'No'}</h2>
                         </div>
                     </div>
                 ))}

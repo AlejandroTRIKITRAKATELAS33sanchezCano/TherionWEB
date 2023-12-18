@@ -43,6 +43,35 @@ export default function ManejoPedidos() {
         fetchData();
     }, []); // El segundo argumento es un array de dependencias, vacío en este caso para que solo se ejecute una vez
 
+    const actualizarPedido = async (idPedido, estado) => {
+        try {
+            const response = await fetch(`http://localhost:8080/api/v1/actualizarPedido/${idPedido}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ peActivo: estado }),
+            });
+
+            if (response.ok) {
+                console.log(`Pedido ${idPedido} actualizado correctamente.`);
+                // Aquí puedes realizar alguna acción adicional si es necesario.
+            } else {
+                console.error(`Error al actualizar pedido ${idPedido}.`);
+            }
+        } catch (error) {
+            console.error('Error de red:', error);
+        }
+    };
+
+    const entregarPedido = (idPedido) => {
+        actualizarPedido(idPedido, false);
+    };
+
+    const cancelarPedido = (idPedido) => {
+        actualizarPedido(idPedido, true);
+    };
+
     return (
         <>
             <header className="header">
@@ -55,7 +84,6 @@ export default function ManejoPedidos() {
                         <li><a href="/ManejoPedidos">Pedidos</a></li>
                     </ul>
                 </nav>
-                <a className="btn" href="/Perfil"><button>Perfil</button></a>
             </header>
             <section className="Centrado">
                 {pedidos.map((pedido) => (
@@ -67,14 +95,14 @@ export default function ManejoPedidos() {
                             <p className="montserrat">Pedido</p>
                             <h1 className="name">{pedido.pePrecio}$</h1>
                             <p className="montserrat">{pedido.peFecha}</p>
-                            <button className="btn">
+                            <button className="btn" onClick={() => entregarPedido(pedido.idPedido)}>
                                 <img src="https://res.cloudinary.com/dbb56iwkk/image/upload/v1701590561/food-delivery-symbol-logo-37F3E64A34-seeklogo.com_lwzzn6.png" alt="" />
-                                Pedidos
+                                Aceptar
                             </button>
 
-                            <button className="btn">
+                            <button className="btn" onClick={() => cancelarPedido(pedido.idPedido)}>
                                 <img src="https://res.cloudinary.com/dbb56iwkk/image/upload/v1701590492/4436557-200_rh1pw5.png" alt="" />
-                                Editar
+                                Cancelar
                             </button>
                         </div>
                     </div>

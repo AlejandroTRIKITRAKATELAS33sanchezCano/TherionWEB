@@ -64,7 +64,7 @@ export default function CrearPedido() {
                 setClientes(data2);
                 setLoading(false);
 
-                console.log("El cliente es: " + (clientes.length > 0 ? clientes[0].idCliente : "No hay clientes"));
+                
                 
             } catch (error) {
                 console.error("Error en la solicitud:", error.message);
@@ -74,9 +74,9 @@ export default function CrearPedido() {
         };
 
         fetchData();
-        
+        console.log("El cliente es: " + clientes.idCliente)
     }, [])
-
+    
     const formik = useFormik({
         initialValues: {
             peDireccion: '',

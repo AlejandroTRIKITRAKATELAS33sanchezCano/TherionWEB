@@ -62,7 +62,6 @@ export default function Negocios() {
                         <li><a href="/ManejoPedidos">Pedidos</a></li>
                     </ul>
                 </nav>
-                <a className="btn" href="/Perfil"><button>Perfil</button></a>
             </header>
             <header className="header2">
                 <h1>Tus Negocios</h1>
